@@ -1,0 +1,48 @@
+body {
+  text-align: center;
+  background-image: url("https://media.istockphoto.com/vectors/casino-and-poker-background-with-dark-red-colors-seamless-vector-vector-id481463580?k=6&m=481463580&s=612x612&w=0&h=NV2ojA9Hf47uMjajyXhYVOk1Qv8ZWp7K_1CwGNvjDtU=");
+  background-repeat: repeat;
+}
+
+h1 {
+  font-family: 'Alfa Slab One', cursive;
+  text-shadow: 0px 0px 2px red;
+  font-size: 48px;
+}
+
+.login-screen {
+  padding: 40px;
+  width: 40%;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 10px black;
+  border-radius: 10px;
+}
+
+.form-fill {
+  box-shadow: 0px 0px 3px black;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0A100D;
+  color: #8C0000;
+  border: 0px;
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.landing-button {
+  box-shadow: 0px 0px 3px black;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0A100D;
+  color: #8C0000;
+  border: 0px;
+  font-size: 24px;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+hr {
+  width: 50%;
+  border-color: black;
+  box-shadow: 0px 0px 2px black;
+}
