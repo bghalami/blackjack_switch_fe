@@ -12,15 +12,20 @@ h1 {
 }
 
 .login-screen {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
   padding: 40px;
   width: 40%;
   margin: auto;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 0px 0px 10px black;
   border-radius: 10px;
 }
 
 .form-fill {
+  text-align: center;
   box-shadow: 0px 0px 3px black;
   font-family: 'Montserrat', sans-serif;
   background-color: #0A100D;
@@ -43,7 +48,7 @@ h1 {
 }
 
 hr {
-  width: 50%;
+  width: 80%;
   border-color: black;
   box-shadow: 0px 0px 2px black;
 }

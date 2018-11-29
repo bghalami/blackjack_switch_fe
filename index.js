@@ -1,0 +1,1 @@
+object.addEventListener("click", myScript);
