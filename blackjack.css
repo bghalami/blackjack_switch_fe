@@ -47,6 +47,16 @@ h1 {
   padding: 4px;
 }
 
+.disabled-button {
+  color: gray;
+  pointer-events: none;
+}
+
+.heads-up {
+  font-family: 'Montserrat', sans-serif;
+  color: #8C0000;
+}
+
 hr {
   width: 80%;
   border-color: black;
