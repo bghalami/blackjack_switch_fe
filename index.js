@@ -18,10 +18,33 @@ function createLoginSwitch() {
   }
 }
 
+function letsPlay() {
+  loginScreen.style.display   = "none";
+  accountCreate.style.display = "none";
+  playGame.style.display      = "block";
+}
+
 createAccountButton.addEventListener("click", createLoginSwitch);
 goBackButton.addEventListener("click", createLoginSwitch);
 
+let usernameLogin   = document.querySelector(".username-login");
+let passwordLogin   = document.querySelector(".password-login");
 
 var request = new XMLHttpRequest();
 
-request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+request.open('POST', 'https://bens-blackjack-switch.herokuapp.com/api/v1/login', true);
+
+//Send the proper header information along with the request
+request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+request.onreadystatechange = function() { // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      letsPlay
+    } else {
+      loginScreen.style.display   = "none";
+      accountCreate.style.display = "none";
+      playGame.style.display      = "none";
+    }
+}
+
+request.send(`username=${usernameLogin.val}&password=${usernamePassword.val}`);
