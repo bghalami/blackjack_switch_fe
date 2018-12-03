@@ -11,6 +11,13 @@ h1 {
   font-size: 48px;
 }
 
+h3 {
+  padding: 8px;
+  font-family: 'Alfa Slab One', cursive;
+  text-shadow: 0px 0px 2px red;
+  font-size: 24px;
+}
+
 .spade-border {
   height: 100%;
   top: 50%;
@@ -37,6 +44,24 @@ h1 {
   background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 0px 0px 10px black;
   border-radius: 10px;
+}
+
+.end-game-message {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  width: 40%;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 0px 10px black;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.the-mess {
+  color: white;
 }
 
 .form-fill {
@@ -90,4 +115,134 @@ hr {
   background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 0px 0px 10px black;
   border-radius: 10px;
+}
+
+.dealer-hand {
+  margin: auto;
+  text-align: center;
+  height: 275px;
+}
+
+.dealer-cards {
+  height: 200px;
+}
+
+.dealer-card-1 {
+  position: relative;
+  margin: 10px -80px 10px 0px;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.dealer-card-2 {
+  position: relative;
+  margin: 10px 0px 10px -80px;
+  border-radius: 10px;
+  z-index: 1;
+}
+.dealer-card-3 {
+  position: relative;
+  margin: 10px 0px 10px -80px;
+  border-radius: 10px;
+  z-index: 3;
+}
+.dealer-card-4 {
+  position: relative;
+  margin: 10px 0px 10px -80px;
+  border-radius: 10px;
+  z-index: 4;
+}
+.dealer-card-5 {
+  position: relative;
+  margin: 10px 0px 10px -80px;
+  border-radius: 10px;
+  z-index: 5;
+}
+
+.player-hands {
+  margin: auto;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-between;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+
+.hand-one {
+  padding: 0px 90px 0px 0px;
+}
+
+.hand-one-cards {
+  height: 200px;
+  margin: 10px -80px 10px -80px;
+  border-radius: 10px;
+}
+
+.hand-selectors {
+  box-shadow: 0px 0px 20px white;
+  box-shadow: 0px 0px 30px white;
+  box-shadow: 0px 0px 40px white;
+}
+
+.hand-one-card-one {
+  position: relative;
+  z-index: 5;
+}
+.hand-one-card-two {
+  position: relative;
+  z-index: 4;
+}
+.hand-one-card-three {
+  position: relative;
+  z-index: 3;
+}
+.hand-one-card-four {
+  position: relative;
+  z-index: 2;
+}
+.hand-one-card-five {
+  position: relative;
+  z-index: 1;
+}
+
+.hand-two {
+  padding: 0px 0px 0px 90px;
+}
+
+.hand-two-cards {
+  height: 200px;
+  margin: 10px -80px 10px -80px;
+  border-radius: 10px;
+}
+
+.hand-two-card-one {
+  position: relative;
+  z-index: 5;
+}
+.hand-two-card-two {
+  position: relative;
+  z-index: 4;
+}
+.hand-two-card-three {
+  position: relative;
+  z-index: 3;
+}
+.hand-two-card-four {
+  position: relative;
+  z-index: 2;
+}
+.hand-two-card-five {
+  position: relative;
+  z-index: 1;
+}
+
+.place-bet {
+  width: 120px;
+}
+
+.place-bet-disabled {
+  width: 120px;
+  pointer-events: none;
+  background-color: gray;
 }
