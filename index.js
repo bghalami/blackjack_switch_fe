@@ -41,7 +41,7 @@ function deactivatePlayerCards() {
 }
 
 function loggedInCheck() {
-  if(localStorage.getItem("api-key")) {
+  if(localStorage.getItem("apiKey")) {
     letsPlay();
   }
 }
@@ -67,7 +67,11 @@ function deactivateLogin() {
 }
 
 function activateLogin() {
-  loginButton.className = "landing-button login-button"
+  loginButton.className = "landing-button login-button";
+}
+
+function hideSwitch() {
+  document.querySelector(".switch").style.display = "none";
 }
 
 function deactivateCreate() {
@@ -273,7 +277,6 @@ function make_a_move() {
     } else if (localStorage.getItem("action") === "Stay") {
       wereStaying();
     } else if (localStorage.getItem("action") === "Hit") {
-      debugger
       if(response.players[0].hand_one[4] != undefined) {
         document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`;
         document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`;
@@ -327,8 +330,9 @@ function make_a_move() {
         document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`;
         document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
       }
-    } else if (action === "Switch") {
-      
+    } else if (localStorage.getItem("action") === "Switch") {
+      showCards(response);
+      hideSwitch();
     }
     console.log("yo");
   });
