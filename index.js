@@ -3,6 +3,7 @@ const goBackButton        = document.querySelector(".go-back");
 const loginButton         = document.querySelector(".login-button");
 const createUserButton    = document.querySelector(".create-user-button");
 
+const deal = document.querySelector(".deal");
 
 let usernameLogin   = document.querySelector(".username-login");
 let passwordLogin   = document.querySelector(".password-login");
@@ -16,8 +17,15 @@ const playGame      = document.querySelector(".play-game");
 accountCreate.style.display = "none";
 playGame.style.display = "none";
 
+
 deactivateLogin();
 deactivateCreate();
+
+function loggedInCheck() {
+  if(localStorage.getItem("api-key")) {
+    letsPlay();
+  }
+}
 
 function unlockLogin() {
   if ((usernameLogin.value) && (passwordLogin.value)) {
@@ -72,6 +80,7 @@ function showGame() {
 function letsPlay() {
   showGame();
   preDealButtons();
+  loadGame();
 };
 
 createAccountButton.addEventListener("click", createLoginSwitch);
@@ -84,6 +93,9 @@ usernameLogin.addEventListener("input", unlockLogin);
 passwordLogin.addEventListener("input", unlockLogin);
 usernameCreate.addEventListener("input", unlockCreate);
 passwordCreate.addEventListener("input", unlockCreate);
+
+deal.addEventListener("click", dealGame);
+
 
 function tryToCreate() {
   event.preventDefault();
@@ -122,6 +134,8 @@ function loginHandler(response) {
     console.log(response);
     hideBorderCards();
     letsPlay();
+    localStorage.removeItem("apiKey");
+    localStorage.setItem("apiKey", response.api_key);
   } else {
     console.log(response);
     let alert = document.querySelector(".heads-up");
@@ -137,4 +151,30 @@ function hideBorderCards() {
 function preDealButtons() {
   document.querySelector(".hit").style.display  = "none";
   document.querySelector(".stay").style.display  = "none";
+  document.querySelector(".switch").style.display  = "none";
+}
+
+function loadGame() {
+  const package = { method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({api_key: localStorage.getItem("apiKey")})
+                  }
+  fetch('https://bens-blackjack-switch.herokuapp.com/api/v1/games', package)
+  .then(res => res.json())
+  .then(response => {
+    localStorage.removeItem("gameId");
+    localStorage.setItem("gameId", response.game_id);
+  });
+}
+
+function dealGame() {
+  const package = { method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({api_key: localStorage.getItem("apiKey")})
+                  }
+  fetch('https://bens-blackjack-switch.herokuapp.com/api/v1/games', package)
+  .then(res => res.json())
+  .then(response => {
+    console.log(response);
+  });
 }

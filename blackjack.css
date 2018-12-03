@@ -102,7 +102,7 @@ hr {
 .dealer-hand {
   margin: auto;
   text-align: center;
-  height: 300px;
+  height: 275px;
 }
 
 .dealer-cards {
@@ -130,6 +130,8 @@ hr {
   max-width: 600px;
   display: flex;
   justify-content: space-between;
+  border: 3px solid black;
+  border-radius: 10px;
 }
 
 .hand-one {
@@ -148,4 +150,8 @@ hr {
 .hand-two-cards {
   height: 200px;
   margin: 0px -75px 0px -75px;
+}
+
+.place-bet {
+  width: 120px;
 }
