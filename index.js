@@ -63,20 +63,43 @@ function createLoginSwitch() {
   };
 };
 
-function letsPlay() {
+function showGame() {
   loginScreen.style.display   = "none";
   accountCreate.style.display = "none";
   playGame.style.display      = "block";
+}
+
+function letsPlay() {
+  showGame();
+  preDealButtons();
 };
 
 createAccountButton.addEventListener("click", createLoginSwitch);
 goBackButton.addEventListener("click", createLoginSwitch);
 loginButton.addEventListener("click", tryToLogin);
+loginButton.addEventListener("click", tryToLogin);
+createUserButton.addEventListener("click", tryToCreate);
 
 usernameLogin.addEventListener("input", unlockLogin);
 passwordLogin.addEventListener("input", unlockLogin);
 usernameCreate.addEventListener("input", unlockCreate);
 passwordCreate.addEventListener("input", unlockCreate);
+
+function tryToCreate() {
+  event.preventDefault();
+  let data = { username: `${usernameCreate.value}`,
+              password: `${passwordCreate.value}`
+             }
+  const package = { method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                  }
+  fetch('https://bens-blackjack-switch.herokuapp.com/api/v1/users', package)
+  .then(res => res.json())
+  .then(response => {
+    loginHandler(response);
+  });
+}
 
 function tryToLogin() {
   event.preventDefault();
@@ -97,10 +120,21 @@ function tryToLogin() {
 function loginHandler(response) {
   if(response.status === 202) {
     console.log(response);
+    hideBorderCards();
     letsPlay();
   } else {
     console.log(response);
     let alert = document.querySelector(".heads-up");
     alert.innerHTML = "Something went wrong, please try again";
   }
+}
+
+function hideBorderCards() {
+  document.querySelector(".spade-border").style.display = "none";
+  document.querySelector(".club-border").style.display  = "none";
+}
+
+function preDealButtons() {
+  document.querySelector(".hit").style.display  = "none";
+  document.querySelector(".stay").style.display  = "none";
 }
