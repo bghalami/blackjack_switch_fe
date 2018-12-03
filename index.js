@@ -20,6 +20,13 @@ playGame.style.display = "none";
 
 deactivateLogin();
 deactivateCreate();
+deactivateDealerCards();
+
+function deactivateDealerCards() {
+  document.querySelector(".dealer-card-3").style.display = "none";
+  document.querySelector(".dealer-card-4").style.display = "none";
+  document.querySelector(".dealer-card-5").style.display = "none";
+}
 
 function loggedInCheck() {
   if(localStorage.getItem("api-key")) {
@@ -156,9 +163,15 @@ function preDealButtons() {
 
 function postDealButtons() {
   document.querySelector(".deal").style.display  = "none";
-  document.querySelector(".hit").style.display  = "inline";
-  document.querySelector(".stay").style.display  = "inline";
-  document.querySelector(".switch").style.display  = "inline";
+  const hitMe    = document.querySelector(".hit")
+  const illStay  = document.querySelector(".stay")
+  const switchEm = document.querySelector(".switch")
+  hitMe.style.display     = "inline";
+  illStay.style.display   = "inline";
+  switchEm.style.display  = "inline";
+  hitMe.addEventListener("click", make_a_move);
+  illStay.addEventListener("click", make_a_move);
+  switchEm.addEventListener("click", make_a_move);
 }
 
 function loadGame() {
@@ -171,6 +184,7 @@ function loadGame() {
   .then(response => {
     localStorage.removeItem("gameId");
     localStorage.setItem("gameId", response.game_id);
+    document.querySelector(".player-name").innerHTML = `${response.players[0].username}: ${response.players[0].chip_count} chips`
   });
 }
 
@@ -192,6 +206,64 @@ function dealGame() {
   });
 }
 
+function make_a_move() {
+  const gameId  = localStorage.getItem("gameId")
+  const params    = {api_key: localStorage.getItem("apiKey"), move: `${this.value}`}
+  const package   = { method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(params)
+                    }
+  fetch(`https://bens-blackjack-switch.herokuapp.com/api/v1/games/${gameId}/current_hand/moves`, package)
+  .then(res => res.json())
+  .then(response => {
+    if (response.winner === "player" || response.winner === "dealer" || response.winner === "draw") {
+      if(response.dealer_hand[4] != undefined) {
+        document.querySelector('.dealer-card-1').src=`cards/${response.dealer_hand[0]}.png`;
+        document.querySelector('.dealer-card-2').src=`cards/${response.dealer_hand[1]}.png`;
+        document.querySelector(".dealer-card-3").style.display = "inline";
+        document.querySelector(".dealer-card-3").src=`cards/${response.dealer_hand[2]}.png`;
+        document.querySelector(".dealer-card-4").style.display = "inline";
+        document.querySelector(".dealer-card-4").src=`cards/${response.dealer_hand[3]}.png`;
+        document.querySelector(".dealer-card-5").style.display = "inline";
+        document.querySelector(".dealer-card-5").src=`cards/${response.dealer_hand[4]}.png`;
+      } else if (response.dealer_hand[3] != undefined) {
+        document.querySelector('.dealer-card-1').src=`cards/${response.dealer_hand[0]}.png`;
+        document.querySelector('.dealer-card-2').src=`cards/${response.dealer_hand[1]}.png`;
+        document.querySelector(".dealer-card-3").style.display = "inline";
+        document.querySelector(".dealer-card-3").src=`cards/${response.dealer_hand[2]}.png`;
+        document.querySelector(".dealer-card-4").style.display = "inline";
+        document.querySelector(".dealer-card-4").src=`cards/${response.dealer_hand[3]}.png`;
+      } else if (response.dealer_hand[2] != undefined) {
+        document.querySelector('.dealer-card-1').src=`cards/${response.dealer_hand[0]}.png`;
+        document.querySelector('.dealer-card-2').src=`cards/${response.dealer_hand[1]}.png`;
+        document.querySelector(".dealer-card-3").style.display = "inline";
+        document.querySelector(".dealer-card-3").src=`cards/${response.dealer_hand[2]}.png`;
+      } else {
+        document.querySelector('.dealer-card-1').src=`cards/${response.dealer_hand[0]}.png`;
+        document.querySelector('.dealer-card-2').src=`cards/${response.dealer_hand[1]}.png`;
+      }
+      if(response.winner === "player") {
+        "PLAYER WINS! Make another bet to play again!"
+      } else if (response.winner === "dealer") {
+        "DEALER WINS! Make another bet to play again!"
+      } else {
+        "IT'S A DRAW! Make another bet to play again!"
+      }
+      resetGame();
+    }
+    console.log("yo");
+    debugger
+  });
+}
+
+function resetGame() {
+  const placeBet  = document.querySelector(".place-bet-disabled");
+  preDealButtons();
+  placeBet.value     = "";
+  placeBet.className = "place-bet form-fill";
+  document.querySelector(".deal").style.display  = "inline";
+}
+
 function showCards(response) {
   document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`;
   document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`;
@@ -199,5 +271,7 @@ function showCards(response) {
   document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`;
   document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
 
-  document.querySelector('.dealer-card-one').src=`cards/${response.dealer_hand[0]}.png`;
+  deactivateDealerCards();
+  document.querySelector('.dealer-card-2').src=`cards/black-ghost-back.png`;
+  document.querySelector('.dealer-card-1').src=`cards/${response.dealer_hand[0]}.png`;
 }

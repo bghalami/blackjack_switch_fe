@@ -109,25 +109,36 @@ hr {
   height: 200px;
 }
 
-.dealer-card-one {
+.dealer-card-1 {
   position: relative;
   margin: 10px -80px 10px 0px;
-  border-left: 3px solid black;
-  border-top: 3px solid black;
-  border-bottom: 3px solid black;
   border-radius: 10px;
-  position: relative;
-  z-index: 10;
+  z-index: 2;
 }
 
-.dealer-card-two {
+.dealer-card-2 {
   position: relative;
   margin: 10px 0px 10px -80px;
-  border-right: 3px solid black;
-  border-top: 3px solid black;
-  border-bottom: 3px solid black;
   border-radius: 10px;
   z-index: 1;
+}
+.dealer-card-3 {
+  position: relative;
+  margin: 10px 0px 10px -80px;
+  border-radius: 10px;
+  z-index: 3;
+}
+.dealer-card-4 {
+  position: relative;
+  margin: 10px 0px 10px -80px;
+  border-radius: 10px;
+  z-index: 4;
+}
+.dealer-card-5 {
+  position: relative;
+  margin: 10px 0px 10px -80px;
+  border-radius: 10px;
+  z-index: 5;
 }
 
 .player-hands {
@@ -152,7 +163,7 @@ hr {
 
 .hand-one-card-one {
   position: relative;
-  z-index: 10;
+  z-index: 2;
 }
 .hand-one-card-two {
   position: relative;
@@ -171,7 +182,7 @@ hr {
 
 .hand-two-card-one {
   position: relative;
-  z-index: 10;
+  z-index: 2;
 }
 .hand-two-card-two {
   position: relative;
