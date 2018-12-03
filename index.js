@@ -156,9 +156,9 @@ function loginHandler(response) {
   if(response.status === 202) {
     console.log(response);
     hideBorderCards();
-    letsPlay();
     localStorage.removeItem("apiKey");
     localStorage.setItem("apiKey", response.api_key);
+    letsPlay();
   } else {
     console.log(response);
     let alert = document.querySelector(".heads-up");
