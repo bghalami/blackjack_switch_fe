@@ -16,6 +16,8 @@ const playGame      = document.querySelector(".play-game");
 
 accountCreate.style.display = "none";
 playGame.style.display = "none";
+document.querySelector(".end-game-message").style.display = "none";
+
 
 
 deactivateLogin();
@@ -26,6 +28,15 @@ function deactivateDealerCards() {
   document.querySelector(".dealer-card-3").style.display = "none";
   document.querySelector(".dealer-card-4").style.display = "none";
   document.querySelector(".dealer-card-5").style.display = "none";
+}
+
+function deactivatePlayerCards() {
+  document.querySelector(".hand-one-card-three").style.display = "none";
+  document.querySelector(".hand-one-card-four").style.display = "none";
+  document.querySelector(".hand-one-card-five").style.display = "none";
+  document.querySelector(".hand-two-card-three").style.display = "none";
+  document.querySelector(".hand-two-card-four").style.display = "none";
+  document.querySelector(".hand-two-card-five").style.display = "none";
 }
 
 function loggedInCheck() {
@@ -189,6 +200,7 @@ function loadGame() {
 }
 
 function dealGame() {
+  document.querySelector(".end-game-message").style.display = "none";
   const placeBet  = document.querySelector(".place-bet");
   const params    = {api_key: localStorage.getItem("apiKey"), bet: placeBet.value}
   const package   = { method: 'POST',
@@ -207,9 +219,12 @@ function dealGame() {
 }
 
 function make_a_move() {
-  const gameId  = localStorage.getItem("gameId")
-  const params    = {api_key: localStorage.getItem("apiKey"), move: `${this.value}`}
-  const package   = { method: 'POST',
+  localStorage.removeItem("action");
+  const theMove = (this.value);
+  localStorage.setItem("action", theMove);
+  const gameId  = localStorage.getItem("gameId");
+  const params  = {api_key: localStorage.getItem("apiKey"), move: `${this.value}`};
+  const package = { method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(params)
                     }
@@ -243,20 +258,83 @@ function make_a_move() {
         document.querySelector('.dealer-card-2').src=`cards/${response.dealer_hand[1]}.png`;
       }
       if(response.winner === "player") {
-        "PLAYER WINS! Make another bet to play again!"
+        document.querySelector(".end-game-message").style.display = "block";
+        document.querySelector(".the-mess").innerHTML = "PLAYER WINS! Make another bet to play again!";
       } else if (response.winner === "dealer") {
-        "DEALER WINS! Make another bet to play again!"
+        document.querySelector(".end-game-message").style.display = "block";
+        document.querySelector(".the-mess").innerHTML = "DEALER WINS! Make another bet to play again!";
       } else {
-        "IT'S A DRAW! Make another bet to play again!"
+        document.querySelector(".end-game-message").style.display = "block";
+        document.querySelector(".the-mess").innerHTML = "IT'S A DRAW! Make another bet to play again!";
       }
       resetGame();
+    } else if (localStorage.getItem("action") === "Stay") {
+      document.querySelector('.hand-one-card-one').className='hand-one-card-one hand-one-cards';
+      document.querySelector('.hand-one-card-two').className='hand-one-card-two hand-one-cards';
+      document.querySelector('.hand-two-card-one').className='hand-two-card-one hand-two-cards hand-selectors';
+      document.querySelector('.hand-two-card-two').className='hand-two-card-two hand-two-cards hand-selectors';
+    } else if (localStorage.getItem("action") === "Hit") {
+      debugger
+      if(response.players[0].hand_one[4] != undefined) {
+        document.querySelector('.hand-one-card-one').src=`cards/${response.response.players[0].hand_one[0]}.png`;
+        document.querySelector('.hand-one-card-two').src=`cards/${response.response.players[0].hand_one[1}.png`;
+        document.querySelector(".hand-one-card-three").style.display = "inline";
+        document.querySelector(".hand-one-card-three").src=`cards/${response.response.players[0].hand_one[2]}.png`;
+        document.querySelector(".hand-one-card-four").style.display = "inline";
+        document.querySelector(".hand-one-card-four").src=`cards/${response.response.players[0].hand_one[3}.png`;
+        document.querySelector(".hand-one-card-five").style.display = "inline";
+        document.querySelector(".hand-one-card-five").src=`cards/${response.response.players[0].hand_one[4]}.png`;
+      } else if (response.players[0].hand_one[3] != undefined) {
+        document.querySelector('.hand-one-card-one').src=`cards/${response.response.players[0].hand_one[0]}.png`;
+        document.querySelector('.hand-one-card-two').src=`cards/${response.response.players[0].hand_one[1}.png`;
+        document.querySelector(".hand-one-card-three").style.display = "inline";
+        document.querySelector(".hand-one-card-three").src=`cards/${response.response.players[0].hand_one[2]}.png`;
+        document.querySelector(".hand-one-card-four").style.display = "inline";
+        document.querySelector(".hand-one-card-four").src=`cards/${response.response.players[0].hand_one[3}.png`;
+      } else if (response.players[0].hand_one[2] != undefined) {
+        document.querySelector('.hand-one-card-one').src=`cards/${response.response.players[0].hand_one[0]}.png`;
+        document.querySelector('.hand-one-card-two').src=`cards/${response.response.players[0].hand_one[1}.png`;
+        document.querySelector(".hand-one-card-three").style.display = "inline";
+        document.querySelector(".hand-one-card-three").src=`cards/${response.response.players[0].hand_one[2]}.png`;
+      } else {
+        document.querySelector('.hand-one-card-one').src=`cards/${response.response.players[0].hand_one[0]}.png`;
+        document.querySelector('.hand-one-card-two').src=`cards/${response.response.players[0].hand_one[1]}.png`;
+      }
+      if(response.players[0].hand_two[4] != undefined) {
+        document.querySelector('.hand-two-card-one').src=`cards/${response.response.players[0].hand_two[0]}.png`;
+        document.querySelector('.hand-two-card-two').src=`cards/${response.response.players[0].hand_two[1}.png`;
+        document.querySelector(".hand-two-card-three").style.display = "inline";
+        document.querySelector(".hand-two-card-three").src=`cards/${response.response.players[0].hand_two[2]}.png`;
+        document.querySelector(".hand-two-card-four").style.display = "inline";
+        document.querySelector(".hand-two-card-four").src=`cards/${response.response.players[0].hand_two[3}.png`;
+        document.querySelector(".hand-two-card-five").style.display = "inline";
+        document.querySelector(".hand-two-card-five").src=`cards/${response.response.players[0].hand_two[4]}.png`;
+      } else if (response.players[0].hand_two[3] != undefined) {
+        document.querySelector('.hand-two-card-one').src=`cards/${response.response.players[0].hand_two[0]}.png`;
+        document.querySelector('.hand-two-card-two').src=`cards/${response.response.players[0].hand_two[1}.png`;
+        document.querySelector(".hand-two-card-three").style.display = "inline";
+        document.querySelector(".hand-two-card-three").src=`cards/${response.response.players[0].hand_two[2]}.png`;
+        document.querySelector(".hand-two-card-four").style.display = "inline";
+        document.querySelector(".hand-two-card-four").src=`cards/${response.response.players[0].hand_two[3}.png`;
+      } else if (response.players[0].hand_two[2] != undefined) {
+        document.querySelector('.hand-two-card-one').src=`cards/${response.response.players[0].hand_two[0]}.png`;
+        document.querySelector('.hand-two-card-two').src=`cards/${response.response.players[0].hand_two[1}.png`;
+        document.querySelector(".hand-two-card-three").style.display = "inline";
+        document.querySelector(".hand-two-card-three").src=`cards/${response.response.players[0].hand_two[2]}.png`;
+      } else {
+        document.querySelector('.hand-two-card-one').src=`cards/${response.response.players[0].hand_two[0]}.png`;
+        document.querySelector('.hand-two-card-two').src=`cards/${response.response.players[0].hand_two[1]}.png`;
+      }
+    } else if (action === "Switch") {
+
     }
     console.log("yo");
-    debugger
   });
 }
 
 function resetGame() {
+  document.querySelector('.hand-two-card-one').className='hand-two-card-one hand-two-cards';
+  document.querySelector('.hand-two-card-two').className='hand-two-card-two hand-two-cards';
   const placeBet  = document.querySelector(".place-bet-disabled");
   preDealButtons();
   placeBet.value     = "";
@@ -267,6 +345,8 @@ function resetGame() {
 function showCards(response) {
   document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`;
   document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`;
+  document.querySelector('.hand-one-card-one').className='hand-one-card-one hand-one-cards hand-selectors';
+  document.querySelector('.hand-one-card-two').className='hand-one-card-two hand-one-cards hand-selectors';
 
   document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`;
   document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
