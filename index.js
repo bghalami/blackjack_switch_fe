@@ -23,6 +23,7 @@ document.querySelector(".end-game-message").style.display = "none";
 deactivateLogin();
 deactivateCreate();
 deactivateDealerCards();
+deactivatePlayerCards();
 
 function deactivateDealerCards() {
   document.querySelector(".dealer-card-3").style.display = "none";
