@@ -193,18 +193,11 @@ function dealGame() {
 }
 
 function showCards(response) {
-  document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`
-  document.querySelector('.hand-one-card-one').className=`hand-one-card-one hand-one-cards-flipped`
+  document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`;
+  document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`;
 
-  document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`
-  document.querySelector('.hand-one-card-two').className=`hand-one-card-two hand-one-cards-flipped`
+  document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`;
+  document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
 
-  document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`
-  document.querySelector('.hand-two-card-one').className=`hand-two-card-one hand-two-cards-flipped`
-
-  document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`
-  document.querySelector('.hand-two-card-two').className=`hand-two-card-two hand-two-cards-flipped`
-
-  document.querySelector('.dealer-card-two').src=`cards/${response.dealer_hand[1]}.png`
-  document.querySelector('.dealer-card-two').className=`dealer-card-two-flipped dealer-cards`
+  document.querySelector('.dealer-card-one').src=`cards/${response.dealer_hand[0]}.png`;
 }
