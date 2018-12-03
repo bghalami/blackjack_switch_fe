@@ -11,6 +11,13 @@ h1 {
   font-size: 48px;
 }
 
+h3 {
+  padding: 8px;
+  font-family: 'Alfa Slab One', cursive;
+  text-shadow: 0px 0px 2px red;
+  font-size: 24px;
+}
+
 .spade-border {
   height: 100%;
   top: 50%;
@@ -90,4 +97,55 @@ hr {
   background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 0px 0px 10px black;
   border-radius: 10px;
+}
+
+.dealer-hand {
+  margin: auto;
+  text-align: center;
+  height: 300px;
+}
+
+.dealer-cards {
+  height: 200px;
+}
+
+.dealer-card-one {
+  margin: 10px -75px 10px 0px;
+  border-left: 3px solid black;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  border-radius: 10px;
+}
+
+.dealer-card-two {
+  margin: 10px 0px 10px -75px;
+  border-right: 3px solid black;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  border-radius: 10px;
+}
+
+.player-hands {
+  margin: auto;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hand-one {
+  padding: 0px 0px 0px 90px;
+}
+
+.hand-one-cards {
+  height: 200px;
+  margin: 0px -75px 0px -75px;
+}
+
+.hand-two {
+  padding: 0px 90px 0px 0px;
+}
+
+.hand-two-cards {
+  height: 200px;
+  margin: 0px -75px 0px -75px;
 }
