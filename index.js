@@ -214,6 +214,7 @@ function dealGame() {
   .then(response => {
     placeBet.className = "place-bet-disabled form-fill";
     placeBet.value     = `Bet: ${placeBet.value}`;
+    deactivatePlayerCards()
     postDealButtons();
     showCards(response)
   });
@@ -270,10 +271,7 @@ function make_a_move() {
       }
       resetGame();
     } else if (localStorage.getItem("action") === "Stay") {
-      document.querySelector('.hand-one-card-one').className='hand-one-card-one hand-one-cards';
-      document.querySelector('.hand-one-card-two').className='hand-one-card-two hand-one-cards';
-      document.querySelector('.hand-two-card-one').className='hand-two-card-one hand-two-cards hand-selectors';
-      document.querySelector('.hand-two-card-two').className='hand-two-card-two hand-two-cards hand-selectors';
+      wereStaying();
     } else if (localStorage.getItem("action") === "Hit") {
       debugger
       if(response.players[0].hand_one[4] != undefined) {
@@ -301,6 +299,9 @@ function make_a_move() {
         document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`;
         document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`;
       }
+      if(response.one_stay === true) {
+        wereStaying();
+      }
       if(response.players[0].hand_two[4] != undefined) {
         document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`;
         document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
@@ -327,10 +328,17 @@ function make_a_move() {
         document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
       }
     } else if (action === "Switch") {
-
+      
     }
     console.log("yo");
   });
+}
+
+function wereStaying() {
+  document.querySelector('.hand-one-card-one').className='hand-one-card-one hand-one-cards';
+  document.querySelector('.hand-one-card-two').className='hand-one-card-two hand-one-cards';
+  document.querySelector('.hand-two-card-one').className='hand-two-card-one hand-two-cards hand-selectors';
+  document.querySelector('.hand-two-card-two').className='hand-two-card-two hand-two-cards hand-selectors';
 }
 
 function resetGame() {
