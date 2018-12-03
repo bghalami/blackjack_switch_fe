@@ -276,54 +276,54 @@ function make_a_move() {
     } else if (localStorage.getItem("action") === "Hit") {
       debugger
       if(response.players[0].hand_one[4] != undefined) {
-        document.querySelector('.hand-one-card-one').src=`cards/${response.response.players[0].hand_one[0]}.png`;
-        document.querySelector('.hand-one-card-two').src=`cards/${response.response.players[0].hand_one[1}.png`;
+        document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`;
+        document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`;
         document.querySelector(".hand-one-card-three").style.display = "inline";
-        document.querySelector(".hand-one-card-three").src=`cards/${response.response.players[0].hand_one[2]}.png`;
+        document.querySelector(".hand-one-card-three").src=`cards/${response.players[0].hand_one[2]}.png`;
         document.querySelector(".hand-one-card-four").style.display = "inline";
-        document.querySelector(".hand-one-card-four").src=`cards/${response.response.players[0].hand_one[3}.png`;
+        document.querySelector(".hand-one-card-four").src=`cards/${response.players[0].hand_one[3]}.png`;
         document.querySelector(".hand-one-card-five").style.display = "inline";
-        document.querySelector(".hand-one-card-five").src=`cards/${response.response.players[0].hand_one[4]}.png`;
+        document.querySelector(".hand-one-card-five").src=`cards/${response.players[0].hand_one[4]}.png`;
       } else if (response.players[0].hand_one[3] != undefined) {
-        document.querySelector('.hand-one-card-one').src=`cards/${response.response.players[0].hand_one[0]}.png`;
-        document.querySelector('.hand-one-card-two').src=`cards/${response.response.players[0].hand_one[1}.png`;
+        document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`;
+        document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`;
         document.querySelector(".hand-one-card-three").style.display = "inline";
-        document.querySelector(".hand-one-card-three").src=`cards/${response.response.players[0].hand_one[2]}.png`;
+        document.querySelector(".hand-one-card-three").src=`cards/${response.players[0].hand_one[2]}.png`;
         document.querySelector(".hand-one-card-four").style.display = "inline";
-        document.querySelector(".hand-one-card-four").src=`cards/${response.response.players[0].hand_one[3}.png`;
+        document.querySelector(".hand-one-card-four").src=`cards/${response.players[0].hand_one[3]}.png`;
       } else if (response.players[0].hand_one[2] != undefined) {
-        document.querySelector('.hand-one-card-one').src=`cards/${response.response.players[0].hand_one[0]}.png`;
-        document.querySelector('.hand-one-card-two').src=`cards/${response.response.players[0].hand_one[1}.png`;
+        document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`;
+        document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`;
         document.querySelector(".hand-one-card-three").style.display = "inline";
-        document.querySelector(".hand-one-card-three").src=`cards/${response.response.players[0].hand_one[2]}.png`;
+        document.querySelector(".hand-one-card-three").src=`cards/${response.players[0].hand_one[2]}.png`;
       } else {
-        document.querySelector('.hand-one-card-one').src=`cards/${response.response.players[0].hand_one[0]}.png`;
-        document.querySelector('.hand-one-card-two').src=`cards/${response.response.players[0].hand_one[1]}.png`;
+        document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`;
+        document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`;
       }
       if(response.players[0].hand_two[4] != undefined) {
-        document.querySelector('.hand-two-card-one').src=`cards/${response.response.players[0].hand_two[0]}.png`;
-        document.querySelector('.hand-two-card-two').src=`cards/${response.response.players[0].hand_two[1}.png`;
+        document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`;
+        document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
         document.querySelector(".hand-two-card-three").style.display = "inline";
-        document.querySelector(".hand-two-card-three").src=`cards/${response.response.players[0].hand_two[2]}.png`;
+        document.querySelector(".hand-two-card-three").src=`cards/${response.players[0].hand_two[2]}.png`;
         document.querySelector(".hand-two-card-four").style.display = "inline";
-        document.querySelector(".hand-two-card-four").src=`cards/${response.response.players[0].hand_two[3}.png`;
+        document.querySelector(".hand-two-card-four").src=`cards/${response.players[0].hand_two[3]}.png`;
         document.querySelector(".hand-two-card-five").style.display = "inline";
-        document.querySelector(".hand-two-card-five").src=`cards/${response.response.players[0].hand_two[4]}.png`;
+        document.querySelector(".hand-two-card-five").src=`cards/${response.players[0].hand_two[4]}.png`;
       } else if (response.players[0].hand_two[3] != undefined) {
-        document.querySelector('.hand-two-card-one').src=`cards/${response.response.players[0].hand_two[0]}.png`;
-        document.querySelector('.hand-two-card-two').src=`cards/${response.response.players[0].hand_two[1}.png`;
+        document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`;
+        document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
         document.querySelector(".hand-two-card-three").style.display = "inline";
-        document.querySelector(".hand-two-card-three").src=`cards/${response.response.players[0].hand_two[2]}.png`;
+        document.querySelector(".hand-two-card-three").src=`cards/${response.players[0].hand_two[2]}.png`;
         document.querySelector(".hand-two-card-four").style.display = "inline";
-        document.querySelector(".hand-two-card-four").src=`cards/${response.response.players[0].hand_two[3}.png`;
+        document.querySelector(".hand-two-card-four").src=`cards/${response.players[0].hand_two[3]}.png`;
       } else if (response.players[0].hand_two[2] != undefined) {
-        document.querySelector('.hand-two-card-one').src=`cards/${response.response.players[0].hand_two[0]}.png`;
-        document.querySelector('.hand-two-card-two').src=`cards/${response.response.players[0].hand_two[1}.png`;
+        document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`;
+        document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
         document.querySelector(".hand-two-card-three").style.display = "inline";
-        document.querySelector(".hand-two-card-three").src=`cards/${response.response.players[0].hand_two[2]}.png`;
+        document.querySelector(".hand-two-card-three").src=`cards/${response.players[0].hand_two[2]}.png`;
       } else {
-        document.querySelector('.hand-two-card-one').src=`cards/${response.response.players[0].hand_two[0]}.png`;
-        document.querySelector('.hand-two-card-two').src=`cards/${response.response.players[0].hand_two[1]}.png`;
+        document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`;
+        document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`;
       }
     } else if (action === "Switch") {
 
