@@ -154,6 +154,13 @@ function preDealButtons() {
   document.querySelector(".switch").style.display  = "none";
 }
 
+function postDealButtons() {
+  document.querySelector(".deal").style.display  = "none";
+  document.querySelector(".hit").style.display  = "inline";
+  document.querySelector(".stay").style.display  = "inline";
+  document.querySelector(".switch").style.display  = "inline";
+}
+
 function loadGame() {
   const package = { method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -168,13 +175,36 @@ function loadGame() {
 }
 
 function dealGame() {
-  const package = { method: 'POST',
+  const placeBet  = document.querySelector(".place-bet");
+  const params    = {api_key: localStorage.getItem("apiKey"), bet: placeBet.value}
+  const package   = { method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({api_key: localStorage.getItem("apiKey")})
-                  }
-  fetch('https://bens-blackjack-switch.herokuapp.com/api/v1/games', package)
+                    body: JSON.stringify(params)
+                    }
+  const gameId  = localStorage.getItem("gameId")
+  fetch(`https://bens-blackjack-switch.herokuapp.com/api/v1/games/${gameId}/deal`, package)
   .then(res => res.json())
   .then(response => {
-    console.log(response);
+    placeBet.className = "place-bet-disabled form-fill";
+    placeBet.value     = `Bet: ${placeBet.value}`;
+    postDealButtons();
+    showCards(response)
   });
+}
+
+function showCards(response) {
+  document.querySelector('.hand-one-card-one').src=`cards/${response.players[0].hand_one[0]}.png`
+  document.querySelector('.hand-one-card-one').className=`hand-one-card-one hand-one-cards-flipped`
+
+  document.querySelector('.hand-one-card-two').src=`cards/${response.players[0].hand_one[1]}.png`
+  document.querySelector('.hand-one-card-two').className=`hand-one-card-two hand-one-cards-flipped`
+
+  document.querySelector('.hand-two-card-one').src=`cards/${response.players[0].hand_two[0]}.png`
+  document.querySelector('.hand-two-card-one').className=`hand-two-card-one hand-two-cards-flipped`
+
+  document.querySelector('.hand-two-card-two').src=`cards/${response.players[0].hand_two[1]}.png`
+  document.querySelector('.hand-two-card-two').className=`hand-two-card-two hand-two-cards-flipped`
+
+  document.querySelector('.dealer-card-two').src=`cards/${response.dealer_hand[1]}.png`
+  document.querySelector('.dealer-card-two').className=`dealer-card-two-flipped dealer-cards`
 }

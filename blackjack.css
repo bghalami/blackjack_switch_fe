@@ -125,6 +125,15 @@ hr {
   border-radius: 10px;
 }
 
+.dealer-card-two-flipped {
+  height: 170px;
+  margin: 10px 0px 10px -75px;
+  border-right: 3px solid black;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  border-radius: 10px;
+}
+
 .player-hands {
   margin: auto;
   max-width: 600px;
@@ -134,8 +143,9 @@ hr {
   border-radius: 10px;
 }
 
+
 .hand-one {
-  padding: 0px 0px 0px 90px;
+  padding: 0px 90px 0px 0px;
 }
 
 .hand-one-cards {
@@ -143,8 +153,22 @@ hr {
   margin: 0px -75px 0px -75px;
 }
 
+.hand-one-cards-flipped {
+  height: 180px;
+  margin: 10px -80px 10px -80px;
+}
+
+.hand-one-card-one {
+  position: relative;
+  z-index: 10;
+}
+.hand-one-card-two {
+  position: relative;
+  z-index: 1;
+}
+
 .hand-two {
-  padding: 0px 90px 0px 0px;
+  padding: 0px 0px 0px 90px;
 }
 
 .hand-two-cards {
@@ -152,6 +176,26 @@ hr {
   margin: 0px -75px 0px -75px;
 }
 
+.hand-two-cards-flipped {
+  height: 180px;
+  margin: 10px -80px 10px -80px;
+}
+
+.hand-two-card-one {
+  position: relative;
+  z-index: 10;
+}
+.hand-two-card-two {
+  position: relative;
+  z-index: 1;
+}
+
 .place-bet {
   width: 120px;
+}
+
+.place-bet-disabled {
+  width: 120px;
+  pointer-events: none;
+  background-color: gray;
 }
